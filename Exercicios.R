@@ -66,7 +66,6 @@ gsub('textos', 'frases',str)
 # com ggplot do tipo scatter plot. Use as
 # colunas disp e mpg nos eixos x e y respectivamente
 head(mtcars)
-trail(mtcars)
 tail(mtcars)
 library(ggplot2)
 ?aes
@@ -75,4 +74,33 @@ camada1<-geom_point(
   data = mtcars,
   size=3
 )
-plot_mtcars<- ggplot(
+ggplot() + camada1
+
+# Exercício 8 - Usando o exemplo anterior, explore outros tipos de gráficos
+camada2<-geom_line(
+  mapping = aes(x=mtcars$disp, y=mtcars$mpg, color='pink'),
+  data = mtcars,
+  size=4
+)
+ggplot() + camada2
+
+qplot(gear, mpg, data=mtcars, geom=c("boxplot"),
+      fill=gear, main="Mileage by Gear Number",
+      xlab="", ylab="Miles per Gallon") 
+
+camada3<-geom_point(
+  mapping = aes(x=mtcars$disp, y=mtcars$mpg, color='blue'),
+  data = mtcars,
+  size=4
+)
+ggplot()+camada1+camada2+camada3
+
+p <- qplot(disp, mpg, data=mtcars, color=am,
+           main="Scatterplots of MPG vs. Horsepower",
+           xlab="Horsepower", ylab="Miles per Gallon")
+p
+
+ggplot(mtcars,
+       aes(y = mtcars$disp, x = mtcars$mpg, colour = 'blue')) +
+  geom_point()
+?ggplot
